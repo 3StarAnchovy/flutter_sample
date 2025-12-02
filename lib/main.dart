@@ -11,31 +11,28 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(backgroundColor: Colors.black),
+        appBar: AppBar(backgroundColor: Colors.blue),
         body: Container(
+          height: 150,
+          padding: EdgeInsets.all(10),
           child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(child: Image.asset('test.png', width: 150, height: 150)),
-              Container(
-                child: Column(
+              Flexible(child: Image.asset('test.png'), flex: 3),
+              Flexible(
+                flex: 7,
+                child: Row(
                   children: [
-                    Text( 
-                      '캐논 DSLR 100D (단렌즈 충전기 16기가 SD 포함)',
-                      textAlign: TextAlign.left,
-                    ),
-                    Text('성동구 행당동 끌올 10분전', textAlign: TextAlign.left),
-                    Text('210,000원'),
-                    Container(
-                      child: Row(
-                        children: [
-                          IconButton(
-                            onPressed: () {},
-                            icon: Icon(Icons.heart_broken),
-                          ),
-                          Text("4"),
-                        ],
-                      ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('캐논 어쩌고 단렌즈 포함 저쩌고'),
+                        Text('캐논 어쩌고 단렌즈 포함 저쩌고'),
+                        Text('캐논 어쩌고 단렌즈 포함 저쩌고'),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [Icon(Icons.heart_broken), Text('4')],
+                        ),
+                      ],
                     ),
                   ],
                 ),
