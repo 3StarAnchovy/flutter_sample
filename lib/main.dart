@@ -12,36 +12,54 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(backgroundColor: Colors.blue),
-        body: Container(
-          height: 150,
-          padding: EdgeInsets.all(10),
-          child: Row(
-            children: [
-              Flexible(child: Image.asset('test.png'), flex: 3),
-              Flexible(
-                flex: 7,
-                child: Row(
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('캐논 어쩌고 단렌즈 포함 저쩌고'),
-                        Text('캐논 어쩌고 단렌즈 포함 저쩌고'),
-                        Text('캐논 어쩌고 단렌즈 포함 저쩌고'),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [Icon(Icons.heart_broken), Text('4')],
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
+        body: ListView(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [Icon(Icons.accessible_rounded), Text('홍길동')],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [Icon(Icons.accessible_rounded), Text('홍길동')],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [Icon(Icons.accessible_rounded), Text('홍길동')],
+            ),
+          ],
         ),
+        bottomNavigationBar: BottomCustomBar(),
       ),
     );
+  }
+}
+
+class BottomCustomBar extends StatelessWidget {
+  const BottomCustomBar({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BottomAppBar(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [Icon(Icons.phone), Icon(Icons.phone), Icon(Icons.phone)],
+      ),
+    );
+  }
+}
+
+/*
+성능상 이슈 있을수있음
+변하지 않는 UI들은 변수 함수로 축약해도 상관없음
+*/
+var a = SizedBox(child: Text('해윙해윙'));
+
+class ShopItem extends StatelessWidget {
+  const ShopItem({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(child: Text('해윙'));
   }
 }
 
