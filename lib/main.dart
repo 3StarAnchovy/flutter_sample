@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sample/sample/listview.dart';
+import 'package:flutter_sample/sample/CustomStateful.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,6 +14,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   var a = 1;
+  var name = ['해윙', '안녕', '흐잉'];
 
   @override
   Widget build(BuildContext context) {
@@ -24,17 +25,8 @@ class _MyAppState extends State<MyApp> {
         재렌더링 되게하려면 ? state 쓰면 됨
         state는 변하면 state 사용하는 위젯이 자동 재렌더링됨
         */
-        floatingActionButton: FloatingActionButton(
-          child: Text(a.toString()),
-          onPressed: () {
-            setState(() {
-              a++;
-            });
-            print(a);
-          },
-        ),
         appBar: AppBar(backgroundColor: Colors.blue),
-        body: CustomListView(),
+        body: CustomStfWg(),
         bottomNavigationBar: BottomCustomBar(),
       ),
     );
