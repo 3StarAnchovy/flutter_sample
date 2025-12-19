@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_sample/sample/CustomDialog.dart';
 import 'package:flutter_sample/sample/CustomStateful.dart';
 
 void main() {
@@ -20,22 +21,13 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        /*
-        버튼 눌러도 값 안바뀜 -> 재렌더링 안되서
-        재렌더링 되게하려면 ? state 쓰면 됨
-        state는 변하면 state 사용하는 위젯이 자동 재렌더링됨
-        */
         appBar: AppBar(backgroundColor: Colors.blue),
-        body: CustomStfWg(),
+        body: Customdialog(),
         bottomNavigationBar: BottomCustomBar(),
       ),
     );
   }
 }
-
-//state 만드는 두가지 방법
-// 1. state 위젯을 만든다
-// 2. stateful 위젯으로 바꾼다
 
 class BottomCustomBar extends StatelessWidget {
   const BottomCustomBar({super.key});

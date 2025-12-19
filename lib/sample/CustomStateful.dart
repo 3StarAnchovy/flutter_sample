@@ -8,17 +8,23 @@ class CustomStfWg extends StatefulWidget {
 }
 
 class _CustomStfWgState extends State<CustomStfWg> {
+  //state
+  var likeCnt = List.filled(3, 0);
+  var name = ['안녕', '해윙', '사요나라'];
+
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
       itemCount: 3,
       itemBuilder: (c, i) {
         return ListTile(
-          leading: Text('해윙'),
-          title: Text('해윙2'),
+          leading: Text(likeCnt[i].toString()),
+          title: Text(name[i].toString()),
           trailing: ElevatedButton(
             onPressed: () {
-              print('해윙');
+              setState(() {
+                likeCnt[i]++;
+              });
             },
             child: Text('좋아용'),
           ),
