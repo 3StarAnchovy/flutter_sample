@@ -1,38 +1,49 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_sample/sample/listview.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MyApp extends StatefulWidget {
+  MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  var a = 1;
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(backgroundColor: Colors.blue),
-        body: ListView(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [Icon(Icons.accessible_rounded), Text('홍길동')],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [Icon(Icons.accessible_rounded), Text('홍길동')],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [Icon(Icons.accessible_rounded), Text('홍길동')],
-            ),
-          ],
+        /*
+        버튼 눌러도 값 안바뀜 -> 재렌더링 안되서
+        재렌더링 되게하려면 ? state 쓰면 됨
+        state는 변하면 state 사용하는 위젯이 자동 재렌더링됨
+        */
+        floatingActionButton: FloatingActionButton(
+          child: Text(a.toString()),
+          onPressed: () {
+            setState(() {
+              a++;
+            });
+            print(a);
+          },
         ),
+        appBar: AppBar(backgroundColor: Colors.blue),
+        body: CustomListView(),
         bottomNavigationBar: BottomCustomBar(),
       ),
     );
   }
 }
+
+//state 만드는 두가지 방법
+// 1. state 위젯을 만든다
+// 2. stateful 위젯으로 바꾼다
 
 class BottomCustomBar extends StatelessWidget {
   const BottomCustomBar({super.key});
