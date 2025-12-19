@@ -10,6 +10,32 @@ class Customdialog extends StatefulWidget {
 class _CustomdialogState extends State<Customdialog> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return FloatingActionButton(
+      onPressed: () {
+        showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: Text('data'),
+              content: TextField(),
+              actions: [
+                OutlinedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text('Cancel'),
+                ),
+                OutlinedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text('OK'),
+                ),
+              ],
+            );
+          },
+        );
+      },
+    );
   }
 }

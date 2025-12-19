@@ -3,8 +3,17 @@ import 'package:flutter_sample/sample/CustomDialog.dart';
 import 'package:flutter_sample/sample/CustomStateful.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(MaterialApp(home: MyApp()));
 }
+
+/*
+MatefialApp을 밖으로 빼니까 동작하노..? 왜 ..?
+
+컨텍스트 : 부모 위젯의 정보를 담고있는 변수
+1. 스캐폴드의 부모위젯을 마테리얼 앱으로 만들어줌
+-> showDialog(context) 입력이 강제되는데
+-> 마테리얼이 부모로 들어있어야 동작되게끔 설계되어있음
+*/
 
 class MyApp extends StatefulWidget {
   MyApp({super.key});
@@ -19,13 +28,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(backgroundColor: Colors.blue),
-        body: Customdialog(),
-        bottomNavigationBar: BottomCustomBar(),
-      ),
-    );
+    return Scaffold(floatingActionButton: Customdialog());
   }
 }
 
