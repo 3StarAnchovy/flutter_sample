@@ -25,12 +25,28 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  //인원 리스트
   List<String> nameList = [];
+
+  //인원 총합
   var total = 0;
 
+  //추가
   void addOne(String newVal) {
     setState(() {
+      if (newVal.isEmpty) {
+        return;
+      }
+
       nameList.add(newVal);
+      total = nameList.length;
+    });
+  }
+
+  //삭제
+  void deleteOne(int idx) {
+    setState(() {
+      nameList.removeAt(idx);
       total = nameList.length;
     });
   }
@@ -42,7 +58,11 @@ class _MyAppState extends State<MyApp> {
         title: Text(total.toString()),
         backgroundColor: Colors.blue,
       ),
-      body: CustomListView(total: total, nameList: nameList),
+      body: CustomListView(
+        total: total,
+        nameList: nameList,
+        deleteOne: deleteOne,
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           showDialog(

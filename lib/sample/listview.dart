@@ -5,10 +5,12 @@ class CustomListView extends StatefulWidget {
     super.key,
     required this.total,
     required this.nameList,
+    required this.deleteOne,
   });
 
   final int total;
   final List nameList;
+  final Function(int) deleteOne;
 
   @override
   State<CustomListView> createState() => _CustomListViewState();
@@ -28,6 +30,13 @@ class _CustomListViewState extends State<CustomListView> {
         return ListTile(
           leading: Icon(Icons.man),
           title: Text(widget.nameList[i]),
+          trailing: IconButton(
+            onPressed: () {
+              widget.deleteOne(i);
+              return;
+            },
+            icon: Icon(Icons.delete),
+          ),
         );
       },
     );
