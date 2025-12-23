@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sample/sample/CustomDialog.dart';
 import 'package:flutter_sample/sample/CustomStateful.dart';
+import 'package:flutter_sample/sample/StateSample.dart';
 
 void main() {
   runApp(MaterialApp(home: MyApp()));
@@ -23,12 +24,33 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  var a = 1;
+  int a = 1;
+  void onChangeA() {
+    setState(() {
+      a++;
+    });
+  }
+
   var name = ['해윙', '안녕', '흐잉'];
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(floatingActionButton: Customdialog());
+    return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          showDialog(
+            context: context,
+            builder: (context) {
+              return StatefulBuilder(
+                builder: (context, setState) {
+                  return StateSample(state: a, onChangeA: onChangeA);
+                },
+              );
+            },
+          );
+        },
+      ),
+    );
   }
 }
 
@@ -67,4 +89,11 @@ class ShopItem extends StatelessWidget {
 1. 예시디자인 준비
 2. 예시화면에 네모 그리기
 3. 바깥 네모부터 하나하나 위젯으로
+*/
+
+/*
+state 전송
+1. 보내고
+2. 등록하고
+3. 쓰면 됨
 */
