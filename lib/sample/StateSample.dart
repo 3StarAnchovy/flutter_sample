@@ -12,27 +12,29 @@ class StateSample extends StatefulWidget {
   패륜 전송, 불륜전송 안됨
   최대한 state는 부모위젯에 만들자 !
   */
-  const StateSample({super.key, required this.state, required this.onChangeA});
+  const StateSample({super.key, required this.nameList, required this.addOne});
 
-  final int state;
-  final Function() onChangeA;
+  final List nameList;
+  final Function(String) addOne;
 
   @override
   State<StateSample> createState() => _StateSampleState();
 }
 
 class _StateSampleState extends State<StateSample> {
+  var inputController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Dialog(
       child: SizedBox(
         child: Column(
           children: [
-            const TextField(),
-            Text(widget.state.toString()),
+            TextField(controller: inputController),
             TextButton(
               onPressed: () {
-                widget.onChangeA();
+                widget.addOne(inputController.text);
+                Navigator.pop(context);
               },
               child: Text('완료'),
             ),

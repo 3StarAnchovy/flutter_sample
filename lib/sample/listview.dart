@@ -1,8 +1,20 @@
 import 'package:flutter/material.dart';
 
-class CustomListView extends StatelessWidget {
-  const CustomListView({super.key});
+class CustomListView extends StatefulWidget {
+  const CustomListView({
+    super.key,
+    required this.total,
+    required this.nameList,
+  });
 
+  final int total;
+  final List nameList;
+
+  @override
+  State<CustomListView> createState() => _CustomListViewState();
+}
+
+class _CustomListViewState extends State<CustomListView> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -10,10 +22,13 @@ class CustomListView extends StatelessWidget {
       * itemCount : 반복횟수
       * itemBuilder (컨텍스트, 인덱스) { 내용, 반환할 위젯 }
       */
-      itemCount: 3,
+      itemCount: widget.total,
       itemBuilder: (c, i) {
         print(i);
-        return Text(i.toString());
+        return ListTile(
+          leading: Icon(Icons.man),
+          title: Text(widget.nameList[i]),
+        );
       },
     );
   }

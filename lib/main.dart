@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_sample/sample/CustomDialog.dart';
 import 'package:flutter_sample/sample/CustomStateful.dart';
 import 'package:flutter_sample/sample/StateSample.dart';
+import 'package:flutter_sample/sample/listview.dart';
 
 void main() {
   runApp(MaterialApp(home: MyApp()));
@@ -24,28 +25,30 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  int a = 1;
-  void onChangeA() {
+  List<String> nameList = [];
+  var total = 0;
+
+  void addOne(String newVal) {
     setState(() {
-      a++;
+      nameList.add(newVal);
+      total = nameList.length;
     });
   }
-
-  var name = ['해윙', '안녕', '흐잉'];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(total.toString()),
+        backgroundColor: Colors.blue,
+      ),
+      body: CustomListView(total: total, nameList: nameList),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           showDialog(
             context: context,
             builder: (context) {
-              return StatefulBuilder(
-                builder: (context, setState) {
-                  return StateSample(state: a, onChangeA: onChangeA);
-                },
-              );
+              return StateSample(nameList: nameList, addOne: addOne);
             },
           );
         },
