@@ -32,6 +32,7 @@ class _CustomListViewState extends State<CustomListView> {
           title: Text(widget.nameList[i]),
           trailing: IconButton(
             onPressed: () {
+              print('hi');
               widget.deleteOne(i);
               return;
             },

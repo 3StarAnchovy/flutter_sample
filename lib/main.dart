@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sample/sample/CustomDialog.dart';
-import 'package:flutter_sample/sample/CustomStateful.dart';
 import 'package:flutter_sample/sample/StateSample.dart';
 import 'package:flutter_sample/sample/listview.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 void main() {
   runApp(MaterialApp(home: MyApp()));
@@ -31,6 +30,17 @@ class _MyAppState extends State<MyApp> {
   //인원 총합
   var total = 0;
 
+  // 권한
+  getPermission() async {
+    var status = await Permission.contacts.status;
+    if (status.isGranted) {
+      print('허락됨');
+    } else if (status.isDenied) {
+      print('거절됨');
+      Permission.contacts.request();
+    }
+  }
+
   //추가
   void addOne(String newVal) {
     setState(() {
@@ -52,10 +62,25 @@ class _MyAppState extends State<MyApp> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    getPermission();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(total.toString()),
+        leading: IconButton(
+          onPressed: () {
+            setState(() {
+              nameList.sort();
+            });
+            return;
+          },
+          icon: Icon(Icons.refresh),
+        ),
         backgroundColor: Colors.blue,
       ),
       body: CustomListView(

@@ -1,0 +1,17 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+
+
+    {
+      "name": "Flutter (Chrome)",
+      "request": "launch",
+      "type": "dart",
+      "console": "terminal",
+      "args": [
+        "-d",
+        "chrome"
+      ]
+    }
+  ]
+}
